@@ -1,6 +1,10 @@
 FCast.Dispatcher = (() => {
     let listeners = {};
 
+    /**
+     * @param  {String}
+     * @param  {Number} 
+     */
     function unsubscribe(topic, id) {
         const i = listeners[topic].findIndex(id);
         listeners.splice(i, 1);

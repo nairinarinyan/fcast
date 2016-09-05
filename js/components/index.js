@@ -22,6 +22,11 @@ FCast.Component = (() => {
     }
 
     class Component {
+        /**
+         * @param  {Number}
+         * @param  {String}
+         * @param  {Array}
+         */
         constructor(id, DOM, listeners) {
             this.id = id;
             this.DOM = initDOM(DOM, id);
