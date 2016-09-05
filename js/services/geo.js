@@ -7,7 +7,7 @@ FCast.GeoService = (() => {
      * @return {String}
      */
     function getUrl({ latitude, longitude }) {
-        return `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${key}`
+        return `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${key}&language=en`
     }
 
     /**
@@ -15,7 +15,8 @@ FCast.GeoService = (() => {
      * @return {Object}
      */
     function findCity({ results }) {
-        const name = results[0].address_components[results.length - 2].short_name;
+        const components = results[0].address_components;
+        const name = components[components.length - 2].short_name;
 
         return {
             name,
