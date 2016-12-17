@@ -15,8 +15,12 @@ FCast.GeoService = (() => {
      * @return {Object}
      */
     function findCity({ results }) {
-        const components = results[0].address_components;
-        const name = components[components.length - 2].short_name;
+        const firstResult = results[0];
+        const result = firstResult.address_components.find(com =>
+            ~com.types.indexOf('locality')
+        );
+
+        const name = result ? result.short_name : 'Antananarivo';
 
         return {
             name,
