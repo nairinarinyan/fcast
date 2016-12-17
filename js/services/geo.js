@@ -20,7 +20,7 @@ FCast.GeoService = (() => {
             ~com.types.indexOf('locality')
         );
 
-        const name = result ? result.short_name : 'Antananarivo';
+        const name = result ? result.short_name : 'Yerevan';
 
         return {
             name,

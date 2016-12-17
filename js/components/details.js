@@ -58,8 +58,10 @@ FCast.components.Details = (() => {
      */
     function draw(ctx, temps) {
         const gutter = 200;
-        const width = 150;
-        const scale = 3;
+        const height = 150;
+
+        const minT = -40;
+        const maxT = 40;
 
         ctx.beginPath();
         ctx.lineWidth = 3;
@@ -67,15 +69,30 @@ FCast.components.Details = (() => {
 
         temps.forEach((t, i) => {
             const method = !i ? 'moveTo' : 'lineTo';
-            let textX = i * gutter;
 
+            let x = i * gutter;
+            let y = lerp(t, minT, maxT);
+            y = height - y * height;
+
+            let textX = x;
             if (i === temps.length - 1) textX -= 30;
 
-            ctx.fillText(t, textX, (width - t * scale) - 10);
-            ctx[method](i * gutter, width - t * scale);
+            ctx.fillText(t, textX, y - 10);
+            ctx[method](x, y);
         });
 
         ctx.stroke();
+    }
+
+    /**
+     * Interpolate value between [0, 1] given min and max
+     * @param  {Number} value
+     * @param  {Number} min 
+     * @param  {Number} max 
+     * @return {Number}    
+     */
+    function lerp(value, min, max) {
+        return value / (max - min) + .5;
     }
 
     const Details = new FCast.Component('details', createDOM());
