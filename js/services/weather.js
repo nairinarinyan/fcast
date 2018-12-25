@@ -3,7 +3,7 @@ FCast.WeatherService = (() => {
     const dayCount = 7;
 
     function getUrl(name) {
-        return `http://api.openweathermap.org/data/2.5/forecast/daily?q=${name}&cnt=${dayCount}&appid=${key}&units=metric`;
+        return `https://api.openweathermap.org/data/2.5/forecast/daily?q=${name}&cnt=${dayCount}&appid=${key}&units=metric`;
     }
 
     /**

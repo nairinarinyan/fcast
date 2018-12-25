@@ -6,7 +6,7 @@ FCast.components.Details = (() => {
             <div class="container">
                 <div>
                     <div>
-                        <img src="http://openweathermap.org/img/w/${dayDetails.weather[0].icon}.png" alt="weather-icon" />
+                        <img src="https://openweathermap.org/img/w/${dayDetails.weather[0].icon}.png" alt="weather-icon" />
                     </div>
                     <div class="heading">
                         <h2>

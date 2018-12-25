@@ -24,7 +24,7 @@ FCast.components.Forecast = (() => {
                                 ${FCast.Utils.formatDate(day.dt)}
                             </h4>
                             <div>
-                                <img src="http://openweathermap.org/img/w/${day.weather[0].icon}.png" alt="weather-icon" />
+                                <img src="https://openweathermap.org/img/w/${day.weather[0].icon}.png" alt="weather-icon" />
                                 <div class="temp">${day.temp.day + '°C'}</div>
                             </div>
                         </div>`
