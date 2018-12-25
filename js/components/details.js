@@ -31,7 +31,7 @@ FCast.components.Details = (() => {
                 <div id="temp-change">
                     <h3>Temperature change during the day</h3>
                     <div class="canvas-wrapper">
-                        <canvas id="analytics" width="600" height="150"></canvas>
+                        <canvas id="analytics" height="150"></canvas>
                     </div>
                 </div>
 
@@ -44,11 +44,13 @@ FCast.components.Details = (() => {
      */
     function initCanvas() {
         const canvas = document.getElementById('analytics');
+        const width = Math.min(window.innerWidth - 30, 600);
+        canvas.width = width;
         const ctx = canvas.getContext('2d');
 
         const { morn, day, eve, night } = dayDetails.temp;
 
-        draw(ctx, [morn, day, eve, night]);
+        draw(ctx, width, [morn, day, eve, night]);
     }
 
     /**
@@ -56,8 +58,8 @@ FCast.components.Details = (() => {
      * @param  {Object} 
      * @param  {Array}
      */
-    function draw(ctx, temps) {
-        const gutter = 200;
+    function draw(ctx, width, temps) {
+        const gutter = width / 3;
         const height = 150;
 
         const minT = -40;
