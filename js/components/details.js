@@ -45,12 +45,16 @@ FCast.components.Details = (() => {
     function initCanvas() {
         const canvas = document.getElementById('analytics');
         const width = Math.min(window.innerWidth - 30, 600);
-        canvas.width = width;
+        canvas.style.width = width + 'px';
+        canvas.style.height = 150 + 'px';
+
+        canvas.width = window.devicePixelRatio * width;
+        canvas.height = window.devicePixelRatio * canvas.height;
         const ctx = canvas.getContext('2d');
 
         const { morn, day, eve, night } = dayDetails.temp;
 
-        draw(ctx, width, [morn, day, eve, night]);
+        draw(ctx, canvas.width, [morn, day, eve, night]);
     }
 
     /**
@@ -60,14 +64,17 @@ FCast.components.Details = (() => {
      */
     function draw(ctx, width, temps) {
         const gutter = width / 3;
-        const height = 150;
+        const height = 150 * window.devicePixelRatio;
+        const textVerticalMargin = 10 * window.devicePixelRatio;
+        const textHorizontalMargin = 40 * window.devicePixelRatio;
 
         const minT = -40;
         const maxT = 40;
 
         ctx.beginPath();
-        ctx.lineWidth = 3;
+        ctx.lineWidth = 3 * window.devicePixelRatio;
         ctx.strokeStyle = '#44AF69';
+        ctx.font = 14 * window.devicePixelRatio + 'px Merriweather Sans';
 
         temps.forEach((t, i) => {
             const method = !i ? 'moveTo' : 'lineTo';
@@ -77,9 +84,14 @@ FCast.components.Details = (() => {
             y = height - y * height;
 
             let textX = x;
-            if (i === temps.length - 1) textX -= 30;
 
-            ctx.fillText(t, textX, y - 10);
+            if (i === temps.length - 1) {
+                textX -= textHorizontalMargin;
+            } else if (i) {
+                textX -= textHorizontalMargin / 2;
+            }
+
+            ctx.fillText(t, textX, y - textVerticalMargin);
             ctx[method](x, y);
         });
 

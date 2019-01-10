@@ -125,6 +125,10 @@ body {
     justify-content: center;
 }
 
+canvas {
+    display: block;
+}
+
 @media (max-width: 500px) {
     #forecast .wrapper {
         flex-direction: column;

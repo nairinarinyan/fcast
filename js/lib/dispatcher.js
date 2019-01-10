@@ -34,7 +34,7 @@ FCast.Dispatcher = (() => {
          * @param  {Object} Data to dispatch
          */
         inform(topic, data) {
-            listeners[topic].forEach(({ cb, scope }) =>
+            listeners[topic] && listeners[topic].forEach(({ cb, scope }) =>
                 cb.call(scope, data)
             );
         }

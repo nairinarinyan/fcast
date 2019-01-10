@@ -47,10 +47,9 @@ FCast.components.Dropdown = (() => {
     FCast.Dispatcher.subscribe('city:fetched', city => {
         if (city) {
             cities.unshift(city);
+            Dropdown.update(createDOM());
+            FCast.Dispatcher.inform('city:change', city || cities[0]);
         }
-        
-        Dropdown.update(createDOM());
-        FCast.Dispatcher.inform('city:change', city || cities[0]);
     });
 
     return Dropdown;
