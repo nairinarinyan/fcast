@@ -63,10 +63,11 @@ body {
     cursor: pointer;
     border-bottom: 5px solid #44AF69;
     transition: .2s transform ease-out;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .day:hover {
-    transform: scale(1.1);
+    transform: scale(1.2);
 }
 
 .day > div {
@@ -134,7 +135,12 @@ canvas {
         flex-direction: column;
         padding: 5%;
     }
+
     .day {
         width: 100%;
+    }
+
+    .day:hover {
+        transform: scale(1.05);
     }
 }
